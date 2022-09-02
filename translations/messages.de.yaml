@@ -1,0 +1,22 @@
+Dashboard: Übersicht
+ID: ID
+Label: Bezeichnung
+Description: Beschreibung
+Created: Erstellt
+Updated: Aktualisiert
+Subjects: Fächerangebot
+Subject: Unterrichtsfach
+SubjectType: Fächerarten
+Subject Type: Facharten
+Content Changed: Inhalt zuletzt geändert
+
+Presentation: Präsentationen
+PresentationTypes: Präsentationsformen
+PresentationType: Präsentationsform
+PresentationSubjects: Themen
+PresentationSubject: Thema
+Presentation Schedule: Themenübersicht
+PresentationSchedule: Präsentation
+Tags: Tags
+Tag: Tag
+Restricted Subjects: gesperrte Themen
