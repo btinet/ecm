@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'PresentationSubject'|trans }}{% endblock %}
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <h1>5. Prüfungskomponente</h1>
+        <h2 class="mb-3">{{ subject.label }}</h2>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card">
+                    <button onclick="history.back()" class="btn btn-light">Zurück zur vorherigen Seite</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="h5 text-center">{{ 'mainSubject'|trans }}</div>
+                <div class="card">
+
+                    <a onclick="history.back()" class="btn btn-primary">{{ subject.mainSubject.label }}</a>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="h5 text-center">{{ 'referenceSubject'|trans }}</div>
+                <div class="card">
+                    <a onclick="history.back()" class="btn btn-light">{{ subject.referenceSubject.label }}</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card mb-5">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="me-auto">{{ subject.label }}</span>
+                        <small>
+                            {% if date(subject.held) >= date('-3 years') %}
+                                <i class="bi bi-lock-fill"></i>
+                            {% endif %}
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <h4>Leitfrage</h4>
+                        <p class="card-text">
+                            <b>{{ subject.presentationSubject.label|default('kein Thema zugeordnet!') }}:</b>
+                            {{ subject.presentationSubject.description|default('kein Thema zugeordnet!') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

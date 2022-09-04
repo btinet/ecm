@@ -1,11 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AppController!{% endblock %}
+{% block title %}Themenübersicht{% endblock %}
 
 {% block body %}
-<section>
+<section class="">
     <div class="container">
-        <h1>Exam Component Management</h1>
+        <h1>Dashboard</h1>
+        <h2 class="mb-3">Themenübersicht</h2>
+        <div class="row g-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Alle Themen
+                    </div>
+                    {{ grid(grid,presentations) }}
+                </div>
+            </div>
+        </div>
+
+
+        {#
+
+        <table class="table table-striped table-borderless">
+            <caption>Themen</caption>
+            <thead>
+            <tr>
+                <th>{{ 'Main Subject'|trans }}</th>
+                <th>{{ 'Reference Subject'|trans }}</th>
+                <th>{{ 'Presentation Subject'|trans }}</th>
+                <th>{{ 'Held'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for presentation in presentations %}
+                {% if date(presentation.held) >= date('-3 years') %}
+                {% set is_restricted = 'bg-danger' %}
+                {% else %}
+                    {% set is_restricted = '' %}
+                {% endif %}
+                <tr class="{{ is_restricted }}">
+                    <td>{{ presentation.mainSubject }}</td>
+                    <td>{{ presentation.referenceSubject }}</td>
+                    <td>{{ presentation.label }}</td>
+                    <td>{{ presentation.Held|ago }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="4">Keine Einträge gefunden.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        #}
+
     </div>
 </section>
+
+    <script type="text/javascript">
+
+
+    </script>
 {% endblock %}

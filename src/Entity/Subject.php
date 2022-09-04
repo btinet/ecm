@@ -49,6 +49,8 @@ class Subject
     #[Gedmo\Timestampable(on: 'change', field: ['label'])]
     private $contentChanged;
 
+    private int $countPresentationSubjects;
+
     #[ORM\OneToMany(mappedBy: 'mainSubject', targetEntity: PresentationSchedule::class)]
     private Collection $presentationSchedulesByMainSubject;
 
@@ -65,6 +67,16 @@ class Subject
     public function __toString(): string
     {
         return $this->label;
+    }
+
+    public function getCountPresentationSubjects(bool $isReference = false): int
+    {
+        if ($isReference){
+            $count = $this->getPresentationSchedulesByReferenceSubject()->count();
+        } else {
+            $count = $this->getPresentationSchedulesByMainSubject()->count();
+        }
+        return $count;
     }
 
     public function getId(): ?int

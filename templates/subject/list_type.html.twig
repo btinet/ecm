@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Subjects'|trans }}{% endblock %}
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <h1>5. Prüfungskomponente</h1>
+        <h2 class="mb-3">{{ subject_type.label }} wählen</h2>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card">
+                    <a href="{{ url('subject_index') }}" class="btn btn-light">Eine Ebene zurück</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card mb-5">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="me-auto">{{ subject_type.label }}</span>
+                        <small class="">gelistete Themen</small>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% if subject_type.slug == 'hauptfach' %}
+                            {% for subject in subject_type.subjects|sort((a, b) => a.label <=> b.label)  %}
+                                <a href="{{ url('subject_show',{'subject_type_slug':subject_type.slug,'slug':subject.slug }) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>{{ subject.label }}</span>
+                                    <div>
+                                        <span class="badge text-secondary bg-light">{{ subject.presentationSchedulesByMainSubject|length }}</span>
+                                       </div>
+                                     </a>
+                            {% else %}
+                                <div class="list-group-item">Keine Einträge gefunden.</div>
+                            {% endfor %}
+                        {% else %}
+                            {% for subject in subject_type.subjects|sort((a, b) => a.label <=> b.label)  %}
+                                <a href="{{ url('subject_show',{'subject_type_slug':subject_type.slug,'slug':subject.slug }) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>{{ subject.label }}</span>
+                                    <div>
+                                       <span class="badge text-secondary bg-light">{{ subject.presentationSchedulesByReferenceSubject|length }}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <div class="list-group-item">Keine Einträge gefunden.</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

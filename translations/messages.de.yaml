@@ -1,14 +1,18 @@
 Dashboard: Übersicht
 ID: ID
 Label: Bezeichnung
+label: Bezeichnung
 Description: Beschreibung
 Created: Erstellt
 Updated: Aktualisiert
 Subjects: Fächerangebot
+subjects: Fächer
 Subject: Unterrichtsfach
 SubjectType: Fächerarten
 Subject Type: Facharten
 Content Changed: Inhalt zuletzt geändert
+hauptfach: Hauptfach
+referenzfach: Referenzfach
 
 Presentation: Präsentationen
 PresentationTypes: Präsentationsformen
@@ -20,3 +24,10 @@ PresentationSchedule: Präsentation
 Tags: Tags
 Tag: Tag
 Restricted Subjects: gesperrte Themen
+Held: Gehalten am
+held: gehalten am
+Main Subject: Hauptfach
+mainSubject: Hauptfach
+Reference Subject: Referenzfach
+referenceSubject: Referenzfach
+Presentation Subject: Präsentationsthema

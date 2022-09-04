@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Subjects'|trans }}{% endblock %}
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <h1>5. Prüfungskomponente</h1>
+        <h2>Fächerwahl</h2>
+        <div class="row g-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        {{ 'SubjectType'|trans }}
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% for type in subject_types%}
+                            <a href="{{ url('subject_list',{'slug':type.slug}) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <span>{{ type.label }}</span>
+                                <span class="badge badge-primary bg-primary">{{ type.subjects|length }} {{ 'subjects'|trans }}</span>
+                            </a>
+                        {% else %}
+                            <div class="list-group-item">Keine Einträge gefunden.</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

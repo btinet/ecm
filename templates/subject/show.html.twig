@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Subjects'|trans }}{% endblock %}
+
+{% block body %}
+<section class="">
+    <div class="container">
+        <h1>5. Prüfungskomponente</h1>
+        <h2 class="mb-3">{{ subject.label }} <small class="text-muted">({{ subject_type_slug|trans }})</small></h2>
+        <div class="row g-3">
+            <div class="col-12">
+                <div class="card">
+                    <a href="{{ url('subject_list',{'slug':subject_type_slug}) }}" class="btn btn-light">zurück zur Fächerwahl</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card mb-5">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span class="me-auto">{{ subject.label }}</span>
+                        <small>frei ab</small>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% if subject_type_slug == 'hauptfach' %}
+                            {% for schedule in subject.presentationSchedulesByMainSubject|sort((a, b) => a.label <=> b.label)  %}
+                                <a href="{{ url('presentation_subject_show',{'slug': schedule.slug}) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>
+                                        {{ schedule.label }}<br>
+                                        <small>{{ schedule.presentationSubject.label|default('kein Oberbegriff verfügbar') }}</small>
+                                    </span>
+                                    <div>
+                                        {% if date(schedule.held) >= date('-3 years') %}
+                                            <i class="bi bi-lock-fill"></i>
+                                        {% endif %}
+                                        <span class="badge text-secondary bg-light">{{ schedule.held|date_modify("+3 years")|date('Y') }}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <div class="list-group-item">Keine Einträge gefunden.</div>
+                            {% endfor %}
+                        {% else %}
+                            {% for schedule in subject.presentationSchedulesByReferenceSubject|sort((a, b) => a.label <=> b.label)  %}
+                                <a href="{{ url('presentation_subject_show',{'slug': schedule.slug}) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <span>
+                                    {{ schedule.label }}<br>
+                                    <small>{{ schedule.presentationSubject.label|default('kein Oberbegriff verfügbar') }}</small>
+                                </span>
+                                    <div>
+                                        {% if date(schedule.held) >= date('-3 years') %}
+                                            <i class="bi bi-lock-fill"></i>
+                                        {% endif %}
+                                        <span class="badge text-secondary bg-light">{{ schedule.held|date_modify("+3 years")|date('Y')}}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <div class="list-group-item">Keine Einträge gefunden.</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
