@@ -16,15 +16,20 @@
             <div class="col-6">
                 <div class="h5 text-center">{{ 'mainSubject'|trans }}</div>
                 <div class="card">
-
-                    <a onclick="history.back()" class="btn btn-primary">{{ subject.mainSubject.label }}</a>
+                    <div class="btn-group">
+                        <a href="{{ url('subject_show',{'subject_type_slug':'hauptfach','slug':subject.mainSubject.slug}) }}" class="btn w-75 btn-primary">{{ subject.mainSubject.label }}</a>
+                        <a href="{{ url('subject_show',{'subject_type_slug':'referenzfach','slug':subject.mainSubject.slug}) }}" class="btn btn-light"><small>als Referenzfach</small></a>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="h5 text-center">{{ 'referenceSubject'|trans }}</div>
                 <div class="card">
-                    <a onclick="history.back()" class="btn btn-light">{{ subject.referenceSubject.label }}</a>
-                </div>
+                    <div class="btn-group">
+                        <a href="{{ url('subject_show',{'subject_type_slug':'referenzfach','slug':subject.referenceSubject.slug}) }}" class="btn w-75 btn-light">{{ subject.referenceSubject.label }}</a>
+                        <a href="{{ url('subject_show',{'subject_type_slug':'hauptfach','slug':subject.referenceSubject.slug}) }}" class="btn btn-primary"><small>als Hauptfach</small></a>
+                    </div>
+                    </div>
             </div>
             <div class="col-12">
                 <div class="card mb-5">
